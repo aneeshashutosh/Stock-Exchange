@@ -2,9 +2,8 @@
  * @author Amy Chou, Aneesh Ashutosh, Cam Wong, Seho Young
  * @date 10/01/14
  */
-import java.util.TreeMap;
-import java.util.TreeSet;
 
+<<<<<<< HEAD
 public class Brokerage
 	implements Login {
 	private final StockExchange exchange;
@@ -62,4 +61,8 @@ public class Brokerage
 		this.registeredUsers = new TreeMap<>();
 		this.activeUsers = new TreeSet<>();
 	}
+=======
+public class Brokerage {
+
+>>>>>>> parent of 258b852... Implement Login methods for Brokerage
 }

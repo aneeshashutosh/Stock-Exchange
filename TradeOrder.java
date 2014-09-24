@@ -24,9 +24,10 @@ public class TradeOrder
 
 	public void subtractShares(int shares)
 	{
-		if (this.numShares < shares)
+		if (shares > this.numShares)
 			throw new IllegalArgumentException();
-		this.numShares -= shares;
+		else
+			this.numShares -= shares;
 	}
 
 	public Trader getTrader() { return this.trader; }

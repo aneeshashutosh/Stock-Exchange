@@ -1,10 +1,6 @@
 /**
-<<<<<<< HEAD
- * @author Amy Chou
-=======
  * @author Amy Chou, Aneesh Ashutosh, Cam Wong, Seho Young
  * @date 10/01/14
->>>>>>> FETCH_HEAD
  */
 
 import java.util.*;
@@ -29,6 +25,4 @@ public class StockExchange {
   {
     stocks.get(order.getSymbol().placeOrder(order));
   }
-  
-  
 }

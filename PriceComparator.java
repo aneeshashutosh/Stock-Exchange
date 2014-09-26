@@ -1,8 +1,9 @@
+import java.util.Comparator;
+
 /**
  * @author Amy Chou, Aneesh Ashutosh, Cam Wong, Seho Young
  * @date 10/01/14
  */
-import java.util.Comparator;
 
 public class PriceComparator implements Comparator<TradeOrder>
 {
@@ -24,18 +25,16 @@ public class PriceComparator implements Comparator<TradeOrder>
 		{
 			return 0;
 		}
-		if ((order1.isMarket()) && (order2.isLimit()) || (order1.isLimit()) && (order2.isMarket()))
+		else if ((order1.isMarket()) && (order2.isLimit()) || (order1.isLimit()) && (order2.isMarket()))
 		{
 			return -1 * (int) Math.random() * 99; //Fun random negative value (kind of unnecessary, but what's compsci without some fun? :P )
 		}
 
-		int order1Price = (int) Math.round(100.0D * order1.getPrice());
-		int order2Price = (int) Math.round(100.0D * order2.getPrice());
-
 		if (this.asc)
 		{
-			return order1Price - order2Price;
-		}		
-		return order2Price - order1Price;
+			return (int) Math.round(100D * order1.getPrice()) - (int) Math.round(100D * order2.getPrice());
+		}
+
+		return (int) Math.round(100D * order2.getPrice()) - (int) Math.round(100D * order1.getPrice());
 	}
 }

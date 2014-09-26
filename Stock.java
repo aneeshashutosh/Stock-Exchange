@@ -27,7 +27,8 @@ public class Stock
 	  if (order.isBuy()){
 	    message += "Buy ";
 	  }
-	  else{
+	  else
+	  {
 	    message += "Sell ";
 	  }
 	  message += order.getTrader().getName();

@@ -22,20 +22,56 @@ public class TradeOrder
 		this.price = price;
 	}
 
+	public double getPrice()
+	{
+		return this.price;
+	}
+
+	public int getShares()
+	{
+		return this.numShares;
+	}
+
+	public String getSymbol()
+	{
+		return this.symbol;
+	}
+
+	public Trader getTrader()
+	{
+		return this.trader;
+	}
+
+	public boolean isBuy()
+	{
+		return this.buyOrder;
+	}
+
+	public boolean isLimit()
+	{
+		return !this.isMarket();
+	}
+
+	public boolean isMarket()
+	{
+		return this.marketOrder;
+	}
+
+	public boolean isSell()
+	{
+		return !this.buyOrder;
+	}
+
 	public void subtractShares(int shares)
 	{
 		if (shares > this.numShares)
+		{
 			throw new IllegalArgumentException();
+		}
 		else
+		{
 			this.numShares -= shares;
+		}
 	}
 
-	public Trader getTrader() { return this.trader; }
-	public String getSymbol() { return this.symbol; }
-	public boolean isBuy() { return this.buyOrder; }
-	public boolean isSell() { return !this.buyOrder; }
-	public boolean isMarket() { return this.marketOrder; }
-	public boolean isLimit() { return !this.marketOrder; }
-	public int getShares() { return this.numShares; }
-	public double getPrice() { return this.price; }
 }

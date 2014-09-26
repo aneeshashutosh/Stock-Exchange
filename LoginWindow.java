@@ -18,7 +18,6 @@ import javax.swing.border.EmptyBorder;
  * Provides GUI for registering and logging in users.
  * @author Maria Litvin
  */
-
 public class LoginWindow extends JFrame
 {
   private static JFrame thisWindow;

@@ -4,6 +4,9 @@
 =======
  * @author Amy Chou, Aneesh Ashutosh, Cam Wong, Seho Young
  * @date 10/01/14
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
  */
 
@@ -29,6 +32,9 @@ public class StockExchange {
   {
     stocks.get(order.getSymbol().placeOrder(order));
   }
+<<<<<<< HEAD
   
   
+=======
+>>>>>>> FETCH_HEAD
 }

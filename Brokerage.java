@@ -1,8 +1,12 @@
+import java.util.TreeMap;
+import java.util.TreeSet;
+
 /**
  * @author Amy Chou, Aneesh Ashutosh, Cam Wong, Seho Young
  * @date 10/01/14
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 public class Brokerage
 	implements Login {
@@ -10,6 +14,14 @@ public class Brokerage
 	private TreeMap<String, Trader> registeredUsers;
 	private TreeSet<Trader> activeUsers;
 	
+=======
+public class Brokerage
+implements Login {
+	private final StockExchange exchange;
+	private TreeMap<String, Trader> registeredUsers;
+	private TreeSet<Trader> activeUsers;
+
+>>>>>>> FETCH_HEAD
 	@Override
 	public int addUser(String name, String pswd) {
 		if (this.registeredUsers.containsKey(name)) {
@@ -27,7 +39,11 @@ public class Brokerage
 		this.registeredUsers.put(name, new Trader(this, name, pswd));
 		return 0;
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> FETCH_HEAD
 	@Override
 	public int login(String name, String pswd) {
 		if (!this.registeredUsers.containsKey(name)) {
@@ -43,6 +59,7 @@ public class Brokerage
 		this.activeUsers.add(this.registeredUsers.get(name));
 		return 0;
 	}
+<<<<<<< HEAD
 	
 	public void getQuote(String symb, Trader tr) {
 		tr.receiveMessage(this.exchange.getQuote(symb));
@@ -65,4 +82,24 @@ public class Brokerage
 public class Brokerage {
 
 >>>>>>> parent of 258b852... Implement Login methods for Brokerage
+=======
+
+	public void getQuote(String symb, Trader tr) {
+		tr.receiveMessage(this.exchange.getQuote(symb));
+	}
+
+	public void logout(Trader tr) {
+		this.activeUsers.remove(tr);
+	}
+
+	public void placeOrder(TradeOrder order) {
+		this.exchange.placeOrder(order);
+	}
+
+	public Brokerage(StockExchange exchange) {
+		this.exchange = exchange;
+		this.registeredUsers = new TreeMap<>();
+		this.activeUsers = new TreeSet<>();
+	}
+>>>>>>> FETCH_HEAD
 }

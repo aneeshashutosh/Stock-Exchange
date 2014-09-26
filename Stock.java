@@ -15,4 +15,26 @@ public class Stock
 		this.name = name;
 		this.price = price;
 	}
+<<<<<<< HEAD
+=======
+	
+	public String getQuote()
+	{
+	  
+	}
+	
+	public void placeOrder(TradeOrder order)
+	{
+	  String message = "New order:  ";
+	  if (order.isBuy()){
+	    message += "Buy ";
+	  }
+	  else{
+	    message += "Sell ";
+	  }
+	  message += order.getTrader().getName();
+	  message += "\n";
+	  message += 
+	}
+>>>>>>> FETCH_HEAD
 }

@@ -34,6 +34,7 @@ public class Trader implements Comparable<Trader>
     return name.compareToIgnoreCase(other.name);
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
   
   public boolean equals(Trader other)
   {
@@ -71,3 +72,6 @@ public class Trader implements Comparable<Trader>
     myWindow = null;
   }
 }
+=======
+}
+>>>>>>> FETCH_HEAD

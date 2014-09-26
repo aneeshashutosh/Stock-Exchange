@@ -33,76 +33,76 @@ public class Stock
 
 	public String getQuote()
 	{
-		String quote = this.name + " (" + this.symbol + ")\nPrice: " + USD.format(this.price) + "  hi: " + USD.format(this.highPrice) + "  lo: " + USD.format(this.lowPrice) + "  vol: " + this.volume + "\nAsk: ";
+		StringBuilder quote = new StringBuilder(this.name + " (" + this.symbol + ")\nPrice: " + USD.format(this.price) + "  hi: " + USD.format(this.highPrice) + "  lo: " + USD.format(this.lowPrice) + "  vol: " + this.volume + "\nAsk: ");
 
 		if (!this.sell.isEmpty())
 		{
 			TradeOrder to = this.sell.peek();
 			if (to.isLimit())
 			{
-				quote += USD.format(to.getPrice());
+				quote.append(USD.format(to.getPrice()));
 			}
 			else
 			{
-				quote += "market";
+				quote.append("market");
 			}
-			quote += " size: " + to.getShares();
+			quote.append(" size: " + to.getShares());
 		}
 		else
 		{
-			quote += "none";
+			quote.append("none");
 		}
 
-		quote += "  Bid: ";
+		quote.append("  Bid: ");
 
 		if (!this.buy.isEmpty())
 		{
 			TradeOrder to = this.buy.peek();
 			if (to.isLimit())
 			{
-				quote += USD.format(to.getPrice());
+				quote.append(USD.format(to.getPrice()));
 			}
 			else
 			{
-				quote += "market";
+				quote.append("market");
 			}
-			quote += " size: " + to.getShares();
+			quote.append(" size: " + to.getShares());
 		}
 		else
 		{
-			quote = quote + "none";
+			quote.append("none");
 		}
 
-		return quote;
+		return quote.toString();
 	}
 
 	public void placeOrder(TradeOrder order)
 	{
-		String message = "New order:  ";
+		StringBuilder message = "New order:  ";
 		if (order.isBuy()){
-			message += "Buy ";
+			message.append("Buy ");
 		}
 		else
 		{
-			message += "Sell ";
+			message.append("Sell ");
 		}
-		message += order.getTrader().getName() + "\n" + this.symbol + " ";
+		message.append(order.getTrader().getName() + "\n" + this.symbol + " ");
 		if (this.name != null && this.name.length() > 0)
 		{
-			message += " (" + this.name + ")";
+			message.append(" (" + this.name + ")");
 		}
-		message += "\n" + order.getShares() + " shares";
+		message.append("\n" + order.getShares() + " shares");
 		if (order.isMarket())
 		{
-			message += " at market ";
+			message.append(" at market ");
 		}
 		else
 		{
-			message += " at  " + USD.format(order.getPrice());
+			message.append(" at  " + USD.format(order.getPrice()));
 		}
 
 		Trader trader = order.getTrader();
-		trader.receiveMessage(message);
+		trader.receiveMessage(message.toString());
 
 		if (order.isBuy())
 		{
@@ -148,8 +148,8 @@ public class Stock
 
 			sellOrder.subtractShares(shares);
 			buyOrder.subtractShares(shares);
-
-			String msg = shares + " " + this.symbol + " at " + USD.format(price) + " amt " + USD.format(price * shares);
+			
+			String msg = String.format("%s %s at %s amt %s", shares, this.symbol, USD.format(price), USD.format(price*shares));
 			buyOrder.getTrader().receiveMessage("You bought: " + msg);
 			sellOrder.getTrader().receiveMessage("You sold: " + msg);
 

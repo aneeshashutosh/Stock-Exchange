@@ -78,7 +78,7 @@ public class Stock
 
 	public void placeOrder(TradeOrder order)
 	{
-		StringBuilder message = "New order:  ";
+		StringBuilder message = new StringBuilder("New order:  ");
 		if (order.isBuy()){
 			message.append("Buy ");
 		}
@@ -106,11 +106,11 @@ public class Stock
 
 		if (order.isBuy())
 		{
-			this.sell.add(order);
+			this.buy.add(order);
 		}
 		else
 		{
-			this.buy.add(order);
+			this.sell.add(order);
 		}
 
 		while ((!this.sell.isEmpty()) && (!this.buy.isEmpty()))

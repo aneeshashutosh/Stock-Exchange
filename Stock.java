@@ -86,6 +86,7 @@ public class Stock
 		{
 			message += "Sell ";
 		}
+		//message += order.getTrader().getName() + "\n" + this.symbol + " ";
 		message += order.getTrader().getName() + "\n" + this.symbol + " ";
 		if (this.name != null && this.name.length() > 0)
 		{

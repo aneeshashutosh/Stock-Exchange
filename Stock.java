@@ -57,15 +57,18 @@ public class Stock
    */
   public String getQuote()
   {
+	// StringBuilder is more memory efficient!
     StringBuilder quote = new StringBuilder(this.name + " (" + this.symbol + ")\nPrice: " + USD.format(this.price) + "  hi: " + USD.format(this.highPrice) + "  lo: " + USD.format(this.lowPrice) + "  vol: " + this.volume + "\nAsk: ");
 
     if (!this.sell.isEmpty())
     {
       TradeOrder to = this.sell.peek();
+	  // If it's a "limit" order, we just append the price to our quote.
       if (to.isLimit())
       {
         quote.append(USD.format(to.getPrice()));
       }
+	  // Otherwise, it's market value.
       else
       {
         quote.append("market");
@@ -78,7 +81,8 @@ public class Stock
     }
 
     quote.append("  Bid: ");
-
+	
+	// Same thing
     if (!this.buy.isEmpty())
     {
       TradeOrder to = this.buy.peek();
@@ -110,6 +114,7 @@ public class Stock
    */
   public void placeOrder(TradeOrder order)
   {
+    // Create the message to be submitted via the relevant Trader
     StringBuilder message = new StringBuilder("New order:  ");
     if (order.isBuy()){
       message.append("Buy ");
@@ -135,16 +140,18 @@ public class Stock
 
     Trader trader = order.getTrader();
     trader.receiveMessage(message.toString());
-
+	
+	// Add it to the relevant Queue
     if (order.isBuy())
-    {
-      this.sell.add(order);
-    }
-    else
     {
       this.buy.add(order);
     }
-
+    else
+    {
+      this.sell.add(order);
+    }
+	
+	// Process and complete pending orders
     while ((!this.sell.isEmpty()) && (!this.buy.isEmpty()))
     {
       TradeOrder sellOrder = (TradeOrder)this.sell.peek();
